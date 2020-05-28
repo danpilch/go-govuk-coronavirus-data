@@ -5,8 +5,8 @@ import (
 	"github.com/olekukonko/tablewriter"
 	"io/ioutil"
 	"net/http"
-    "strconv"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -62,15 +62,15 @@ func renderTable(data JsonStruct) {
 	tableData := [][]string{}
 	for _, s := range data.Overview {
 		tableData = append(tableData, []string{
-            string(s.ReportingDate),
-            string(strconv.Itoa(s.CumulativeDeaths)),
-            string(strconv.Itoa(s.DailyChangeInDeaths)),
-        })
+			string(s.ReportingDate),
+			string(strconv.Itoa(s.CumulativeDeaths)),
+			string(strconv.Itoa(s.DailyChangeInDeaths)),
+		})
 	}
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetHeader([]string{"Date", "Deaths", "Change"})
 	table.SetFooter([]string{"", "Total", string(strconv.Itoa(data.Overview[0].CumulativeDeaths))}) // Add Footer
-	table.AppendBulk(tableData)                           // Add Bulk Data
+	table.AppendBulk(tableData)                                                                     // Add Bulk Data
 	table.Render()
 }
 
